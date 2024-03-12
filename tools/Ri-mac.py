@@ -1,6 +1,7 @@
 import optparse
 import re
 import subprocess
+import flet as ft
 
 
 class MacChanger:
@@ -60,7 +61,7 @@ class MacChanger:
                 print(f"[-] Failed to change MAC address: {e}")
 
 
-def main():
+def core_execution():
     parser = optparse.OptionParser()
     parser.add_option("-i", "--interface", dest="interface", help="Interface to change MAC address")
     parser.add_option("-m", "--mac", dest="new_mac", help="New MAC address")
@@ -69,6 +70,15 @@ def main():
     mac_changer = MacChanger(options.interface, options.new_mac)
     mac_changer.change_mac()
 
+
+def main(page: ft.Page):
+    t = ft.Text(value="Hello, world!", size=80, color="green")
+    page.add(t)
+    page.update()
+    pass
+
+
+ft.app(target=main)
 
 if __name__ == "__main__":
     main()
